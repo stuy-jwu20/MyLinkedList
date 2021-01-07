@@ -32,7 +32,7 @@ public class MyLinkedList {
     Node newestNode = new Node (value);
 
     if (size == 0) {
-      add(value);
+      start = end = newestNode;
     } else {
       Node beforeNode = nodeFinder(index-1);
       Node afterNode = nodeFinder(index);
@@ -40,7 +40,7 @@ public class MyLinkedList {
         start = newestNode;
         newestNode.setNextData(afterNode);
         afterNode.setPrevData(newestNode);
-      } else if (index == size) {
+      } else if (index == size-1) {
         end = newestNode;
         newestNode.setPrevData(beforeNode);
         beforeNode.setNextData(newestNode);
@@ -56,7 +56,7 @@ public class MyLinkedList {
   }
 
   public String get (int index) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
 
@@ -91,7 +91,7 @@ public class MyLinkedList {
 
   public String toString() {
     String theNodeString = "[";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; size > 0 & i < size; i++) {
       if (i < size - 1) {
         theNodeString += this.get(i) + ", ";
       }
