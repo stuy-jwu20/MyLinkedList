@@ -19,7 +19,7 @@ public class MyLinkedList {
 
   }
 
-  public void add (int index, String valud) {
+  public void add (int index, String value) {
 
   }
 
@@ -39,7 +39,7 @@ public class MyLinkedList {
 
   }
 
-  private String nodeFinder(int index) {
+  private Node nodeFinder(Node currentNode) {
 
   }
 }
