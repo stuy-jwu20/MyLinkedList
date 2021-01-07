@@ -21,6 +21,12 @@ public class Node {
     return next;
   }
 
+  public Node setNextData (Node otherNode) {
+    Node oldNextNode = next;
+    next = otherNode;
+    return oldNextNode;
+  }
+
   public Node getPrevData () {
     return prev;
   }
