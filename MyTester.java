@@ -19,7 +19,7 @@ public class MyTester {
     thing.add(0, "a1111111dsf");
     System.out.println(thing);
     System.out.println(thing.reversedToString());
-    thing.add(6, "a000000dsf");
+    thing.add(5, "a000000dsf");
     System.out.println(thing);
     System.out.println(thing.reversedToString());
   }
