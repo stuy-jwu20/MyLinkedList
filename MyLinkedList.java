@@ -33,7 +33,8 @@ public class MyLinkedList {
   }
 
   public String set (int index, String value) {
-
+    Node toReplaceNode = nodeFinder(index);
+    return toReplaceNode.setCurrentData(value);
   }
 
   public String toString() {
