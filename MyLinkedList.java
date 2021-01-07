@@ -8,7 +8,7 @@ public class MyLinkedList {
   }
 
   public int size() {
-
+    return size;
   }
 
   public boolean add (String value) {
