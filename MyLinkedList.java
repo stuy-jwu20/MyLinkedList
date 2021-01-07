@@ -5,6 +5,8 @@ public class MyLinkedList {
 
   public MyLinkedList() {
     size = 0;
+    this.start = null;
+    this.end = null;
   }
 
   public int size() {
@@ -32,31 +34,32 @@ public class MyLinkedList {
     Node newestNode = new Node (value);
 
     if (size == 0) {
-      start = end = newestNode;
+      add(value);
+    } else if (index == 0) {
+      Node beforeNode = nodeFinder(index-1);
+      Node afterNode = nodeFinder(index);
+      start = newestNode;
+      newestNode.setNextData(afterNode);
+      afterNode.setPrevData(newestNode);
+    } else if (index == size-1) {
+      Node beforeNode = nodeFinder(index-1);
+      Node afterNode = nodeFinder(index);
+      end = newestNode;
+      newestNode.setPrevData(beforeNode);
+      beforeNode.setNextData(newestNode);
     } else {
       Node beforeNode = nodeFinder(index-1);
       Node afterNode = nodeFinder(index);
-      if (index == 0) {
-        start = newestNode;
-        newestNode.setNextData(afterNode);
-        afterNode.setPrevData(newestNode);
-      } else if (index == size-1) {
-        end = newestNode;
-        newestNode.setPrevData(beforeNode);
-        beforeNode.setNextData(newestNode);
-      } else {
-        newestNode.setPrevData(beforeNode);
-        newestNode.setNextData(afterNode);
-        beforeNode.setNextData(newestNode);
-        afterNode.setPrevData(newestNode);
+      newestNode.setPrevData(beforeNode);
+      newestNode.setNextData(afterNode);
+      beforeNode.setNextData(newestNode);
+      afterNode.setPrevData(newestNode);
       }
-    }
-
     size++;
   }
 
   public String get (int index) {
-    if (index < 0 || index >= size) {
+    if (index < 0 || index >= this.size()) {
       throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
 
@@ -76,38 +79,37 @@ public class MyLinkedList {
   // This is just to test if my other parts do actually work and it isn't a fluke
 
   public String reversedToString() {
+    if (size == 0) return "[]";
+
     String theNodeString = "[";
-    for (int i = size - 1; i >= 0; i--) {
-      if (i > 0) {
-        theNodeString += this.get(i) + ", ";
-      }
-      else if (i == 0) {
-        theNodeString += this.get(i);
-      }
+    Node currentNode = end;
+    while (currentNode.getPrevData() != null) {
+      theNodeString += currentNode.getCurrentData() + ", ";
+      currentNode = currentNode.getPrevData();
     }
-    theNodeString += "]";
+    theNodeString += currentNode.getCurrentData() + "]";
     return theNodeString;
   }
 
   public String toString() {
+    if (size == 0) return "[]";
+
     String theNodeString = "[";
-    for (int i = 0; size > 0 & i < size; i++) {
-      if (i < size - 1) {
-        theNodeString += this.get(i) + ", ";
-      }
-      else if (i == (size - 1)) {
-        theNodeString += this.get(i);
-      }
+    Node currentNode = start;
+    while (currentNode.getNextData() != null) {
+      theNodeString += currentNode.getCurrentData() + ", ";
+      currentNode = currentNode.getNextData();
     }
-    theNodeString += "]";
+    theNodeString += currentNode.getCurrentData() + "]";
     return theNodeString;
   }
 
   private Node nodeFinder (int index) {
     Node aNode = start;
-
-    for (int i = 0; i < index; i++) {
+    int counter = 0;
+    while (aNode != null && counter < index) {
       aNode = aNode.getNextData();
+      counter++;
     }
 
     return aNode;

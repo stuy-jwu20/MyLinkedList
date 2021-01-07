@@ -23,11 +23,9 @@ public class Node {
     next = newNextNode;
   }
 
-
   public Node getPrevData () {
     return prev;
   }
-
 
   public void setPrevData (Node newPrevNode) {
     prev = newPrevNode;
