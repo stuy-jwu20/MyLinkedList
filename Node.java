@@ -11,5 +11,11 @@ public class Node {
     return data;
   }
 
+  public Node getNextData () {
+    return next;
+  }
 
+  public Node getPrevData () {
+    return prev;
+  }
 }
