@@ -43,7 +43,17 @@ public class MyLinkedList {
 
   }
 
-  private Node nodeFinder (Node currentNode) {
+  private Node nodeFinder (int index) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+    }
 
+    Node aNode = start;
+
+    for (int i = 0; i <= index; i++) {
+      aNode = aNode.getNextData();
+    }
+
+    return aNode;
   }
 }
