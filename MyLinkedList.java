@@ -17,6 +17,7 @@ public class MyLinkedList {
       start = end = toAppend;
     } else {
       end.setNextData(toAppend);
+      toAppend.setPrevData(end);
       end = toAppend;
     }
     size++;
@@ -24,90 +25,92 @@ public class MyLinkedList {
   }
 
   public void add (int index, String value) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + size);
+    }
+
     Node newestNode = new Node (value);
 
-    if (index == 0) {
-      if (size == 0) {
-          start = end = toAppend;
-        } else {
-          newestNode.setNextData(start);
-          start = newestNode;
-        }
+    if (size == 0) {
+      add(value);
+    } else {
+      Node beforeNode = nodeFinder(index-1);
+      Node afterNode = nodeFinder(index);
+      if (index == 0) {
+        start = newestNode;
+        newestNode.setNextData(afterNode);
+        afterNode.setPrevData(newestNode);
+      } else if (index == size) {
+        end = newestNode;
+        newestNode.setPrevData(beforeNode);
+        beforeNode.setNextData(newestNode);
       } else {
-        if (index < 0 || index > size) {
-          throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
-        }
-        else if (index == size) {
-          end.setNextData(newestNode);
-          end = newestNode;
-        } else {
-          Node nodeBeforeIndex = nodeFinder(index - 1);
-          Node afterOldNode = nodeBeforeIndex.setNextData(newestNode);
-          newestNode.setNextData(afterOldNode);
-        }
+        newestNode.setPrevData(beforeNode);
+        newestNode.setNextData(afterNode);
+        beforeNode.setNextData(newestNode);
+        afterNode.setPrevData(newestNode);
       }
-      size++;
+    }
+
+    size++;
   }
 
   public String get (int index) {
     if (index < 0 || index > size) {
-      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+      throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
 
-    Node toGetNode = nodeFinder(index);
-    return toGetNode.getCurrentData();
+    return nodeFinder(index).getCurrentData();
   }
 
   public String set (int index, String value) {
     if (index < 0 || index > size) {
-      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+      throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
 
-    Node toReplaceNode = nodeFinder(index);
-    return toReplaceNode.setCurrentData(value);
+    String oldData = nodeFinder(index).getCurrentData();
+    nodeFinder(index).setCurrentData(value);
+    return oldData;
   }
+
+  // This is just to test if my other parts do actually work and it isn't a fluke
 
   public String reversedToString() {
     String theNodeString = "[";
-    Node currentNode = start;
     for (int i = size - 1; i >= 0; i--) {
       if (i > 0) {
-        theNodeString += currentNode + ", ";
-        currentNode.getPrevData();
+        theNodeString += this.get(i) + ", ";
       }
-      else if (i = 0) {
-        theNodeString += currentNode + "]";
+      else if (i == 0) {
+        theNodeString += this.get(i);
       }
     }
+    theNodeString += "]";
     return theNodeString;
   }
 
   public String toString() {
     String theNodeString = "[";
-    Node currentNode = end;
     for (int i = 0; i < size; i++) {
       if (i < size - 1) {
-        theNodeString += currentNode + ", ";
-        currentNode.getNextData();
+        theNodeString += this.get(i) + ", ";
       }
-      else if (i = size - 1) {
-        theNodeString += currentNode + "]";
+      else if (i == (size - 1)) {
+        theNodeString += this.get(i);
       }
     }
+    theNodeString += "]";
     return theNodeString;
   }
 
   private Node nodeFinder (int index) {
-    if (index < 0 || index > size) {
-      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
-    }
-
     Node aNode = start;
 
-    for (int i = 0; i <= index; i++) {
+    for (int i = 0; i < index; i++) {
       aNode = aNode.getNextData();
     }
 
     return aNode;
   }
+
 }

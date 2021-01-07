@@ -11,29 +11,26 @@ public class Node {
     return data;
   }
 
-  public String setCurrentData (String otherData) {
-    String oldData = data;
+  public void setCurrentData (String otherData) {
     data = otherData;
-    return oldData
   }
 
   public Node getNextData () {
     return next;
   }
 
-  public Node setNextData (Node newNextNode) {
-    Node oldNextNode = next;
+  public void setNextData (Node newNextNode) {
     next = newNextNode;
-    return oldNextNode;
   }
+
 
   public Node getPrevData () {
     return prev;
   }
 
-  public Node setPrevData (Node newPrevNode) {
-    Node oldPrevNode = prev;
+
+  public void setPrevData (Node newPrevNode) {
     prev = newPrevNode;
-    return oldPrevNode;
   }
+
 }
