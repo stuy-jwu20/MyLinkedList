@@ -7,8 +7,14 @@ public class Node {
 
   private Node next, prev;
 
-  public String getCurerntData () {
+  public String getCurrentData () {
     return data;
+  }
+
+  public String setCurrentData (String otherData) {
+    String oldData = data;
+    data = otherData;
+    return oldData
   }
 
   public Node getNextData () {
