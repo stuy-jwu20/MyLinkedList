@@ -24,21 +24,51 @@ public class MyLinkedList {
   }
 
   public void add (int index, String value) {
+    Node newestNode = new Node (value);
 
+    if (index == 0) {
+      if (size == 0) {
+          start = end = toAppend;
+        } else {
+          newestNode.setNextData(start);
+          start = newestNode;
+        }
+      } else {
+        if (index < 0 || index > size) {
+          throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+        }
+        else if (index == size) {
+          end.setNextData(newestNode);
+          end = newestNode;
+        } else {
+          Node nodeBeforeIndex = nodeFinder(index - 1);
+          Node afterOldNode = nodeBeforeIndex.setNextData(newestNode);
+          newestNode.setNextData(afterOldNode);
+        }
+      }
+      size++;
   }
 
   public String get (int index) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+    }
+
     Node toGetNode = nodeFinder(index);
     return toGetNode.getCurrentData();
   }
 
   public String set (int index, String value) {
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsExceptions("Your current index " + index + " is not between 0 and " + size);
+    }
+
     Node toReplaceNode = nodeFinder(index);
     return toReplaceNode.setCurrentData(value);
   }
 
   public String toString() {
-
+    String theNodeString = "[";
   }
 
   public String reversedToString() {
