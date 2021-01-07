@@ -21,9 +21,9 @@ public class Node {
     return next;
   }
 
-  public Node setNextData (Node otherNode) {
+  public Node setNextData (Node newNextNode) {
     Node oldNextNode = next;
-    next = otherNode;
+    next = newNextNode;
     return oldNextNode;
   }
 
@@ -31,9 +31,9 @@ public class Node {
     return prev;
   }
 
-  public Node setPrevData (Node otherNode) {
+  public Node setPrevData (Node newPrevNode) {
     Node oldPrevNode = prev;
-    prev = otherNode;
+    prev = newPrevNode;
     return oldPrevNode;
   }
 }
