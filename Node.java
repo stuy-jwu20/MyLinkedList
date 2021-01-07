@@ -30,4 +30,10 @@ public class Node {
   public Node getPrevData () {
     return prev;
   }
+
+  public Node setPrevData (Node otherNode) {
+    Node oldPrevNode = prev;
+    prev = otherNode;
+    return oldPrevNode;
+  }
 }
