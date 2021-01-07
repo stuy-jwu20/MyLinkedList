@@ -23,10 +23,6 @@ public class MyLinkedList {
     return true;
   }
 
-  public boolean add (int, index, String value) {
-
-  }
-
   public void add (int index, String value) {
 
   }
@@ -47,7 +43,7 @@ public class MyLinkedList {
 
   }
 
-  private Node nodeFinder(Node currentNode) {
+  private Node nodeFinder (Node currentNode) {
 
   }
 }
