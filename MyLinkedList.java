@@ -28,7 +28,8 @@ public class MyLinkedList {
   }
 
   public String get (int index) {
-
+    Node toGetNode = nodeFinder(index);
+    return toGetNode.getCurrentData();
   }
 
   public String set (int index, String value) {
