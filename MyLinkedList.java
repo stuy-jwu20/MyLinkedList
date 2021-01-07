@@ -67,12 +67,34 @@ public class MyLinkedList {
     return toReplaceNode.setCurrentData(value);
   }
 
-  public String toString() {
+  public String reversedToString() {
     String theNodeString = "[";
+    Node currentNode = start;
+    for (int i = size - 1; i >= 0; i--) {
+      if (i > 0) {
+        theNodeString += currentNode + ", ";
+        currentNode.getPrevData();
+      }
+      else if (i = 0) {
+        theNodeString += currentNode + "]";
+      }
+    }
+    return theNodeString;
   }
 
-  public String reversedToString() {
-
+  public String toString() {
+    String theNodeString = "[";
+    Node currentNode = end;
+    for (int i = 0; i < size; i++) {
+      if (i < size - 1) {
+        theNodeString += currentNode + ", ";
+        currentNode.getNextData();
+      }
+      else if (i = size - 1) {
+        theNodeString += currentNode + "]";
+      }
+    }
+    return theNodeString;
   }
 
   private Node nodeFinder (int index) {
