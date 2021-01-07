@@ -12,7 +12,15 @@ public class MyLinkedList {
   }
 
   public boolean add (String value) {
-
+    Node toAppend = new Node (value);
+    if (size == 0) {
+      start = end = toAppend;
+    } else {
+      end.setNextData(toAppend);
+      end = toAppend;
+    }
+    size++;
+    return true;
   }
 
   public boolean add (int, index, String value) {
