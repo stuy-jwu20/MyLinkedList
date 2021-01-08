@@ -115,4 +115,14 @@ public class MyLinkedList {
     return aNode;
   }
 
+/////////////////////////// Part 2 ///////////////////////////
+
+  public String remove (int index) {
+
+  }
+
+  public void extend (MyLinkedList other) {
+
+  }
+
 }
