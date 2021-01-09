@@ -116,7 +116,7 @@ public class MyLinkedList {
 /////////////////////////// Part 2 ///////////////////////////
 
   public String remove (int index) {
-    if (index < 0 || index > size) {
+    if (index < 0 || index >= size) {
       throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
 
