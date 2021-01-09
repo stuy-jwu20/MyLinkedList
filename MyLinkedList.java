@@ -124,12 +124,10 @@ public class MyLinkedList {
       start = end = null;
     } else if (index == 0) {
       Node newFirst = nodeFinder(index+1);
-      start.setNextData(null);
       start = newFirst;
       newFirst.setPrevData(null);
     } else if (index == size-1) {
       Node newLast = nodeFinder(index-1);
-      end.setPrevData(null);
       end = newLast;
       newLast.setNextData(null);
     } else {
