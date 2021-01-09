@@ -34,7 +34,7 @@ public class MyLinkedList {
     Node newestNode = new Node (value);
 
     if (size == 0) {
-      add(value);
+      start = end = newestNode;
     } else if (index == 0) {
       Node beforeNode = nodeFinder(index-1);
       Node afterNode = nodeFinder(index);
@@ -123,12 +123,14 @@ public class MyLinkedList {
     String removedString = nodeFinder(index).getCurrentData();
     if (index == 0) {
       Node newFirst = nodeFinder(index+1);
+      start.setNextData(null);
       start = newFirst;
       newFirst.setPrevData(null);
     } else if (size == 1) {
       start = end = null;
     } else if (index == size-1) {
       Node newLast = nodeFinder(index-1);
+      end.setPrevData(null);
       end = newLast;
       newLast.setNextData(null);
     } else {
