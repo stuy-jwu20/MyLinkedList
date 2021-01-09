@@ -1,6 +1,5 @@
 public class MyLinkedList {
   private int size;
-
   private Node start, end;
 
   public MyLinkedList() {
@@ -121,13 +120,13 @@ public class MyLinkedList {
     }
 
     String removedString = nodeFinder(index).getCurrentData();
-    if (index == 0) {
+    if (size == 1) {
+      start = end = null;
+    } else if (index == 0) {
       Node newFirst = nodeFinder(index+1);
       start.setNextData(null);
       start = newFirst;
       newFirst.setPrevData(null);
-    } else if (size == 1) {
-      start = end = null;
     } else if (index == size-1) {
       Node newLast = nodeFinder(index-1);
       end.setPrevData(null);
