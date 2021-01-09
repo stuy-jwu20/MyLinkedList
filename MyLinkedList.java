@@ -111,18 +111,38 @@ public class MyLinkedList {
       aNode = aNode.getNextData();
       counter++;
     }
-
     return aNode;
   }
 
 /////////////////////////// Part 2 ///////////////////////////
 
   public String remove (int index) {
-
+    if (index < 0 || index > size) {
+      throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
+    }
+    System.out.println(index + " " + (size -1));
+    String removedString = nodeFinder(index).getCurrentData();
+    if (index == 0) {
+      Node newFirst = nodeFinder(index+1);
+      start = newFirst;
+      newFirst.setPrevData(null);
+    } else if (size == 1) {
+      start = end = null;
+    } else if (index == size-2) {
+      Node newLast = nodeFinder(index-1);
+      end = newLast;
+      newLast.setNextData(null);
+    } else {
+      Node nodeBefore = nodeFinder(index-1);
+      Node nodeAfter = nodeFinder(index+1);
+      nodeBefore.setNextData(nodeAfter);
+      nodeAfter.setPrevData(nodeBefore);
+    }
+    size--;
+    return removedString;
   }
 
   public void extend (MyLinkedList other) {
-
   }
 
 }
