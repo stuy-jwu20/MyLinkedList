@@ -120,7 +120,7 @@ public class MyLinkedList {
     if (index < 0 || index > size) {
       throw new IndexOutOfBoundsException("Your current index " + index + " is not between 0 and " + (size-1));
     }
-    System.out.println(index + " " + (size -1));
+    
     String removedString = nodeFinder(index).getCurrentData();
     if (index == 0) {
       Node newFirst = nodeFinder(index+1);
