@@ -133,9 +133,12 @@ public class MyLinkedList {
       newLast.setNextData(null);
     } else {
       Node nodeBefore = nodeFinder(index-1);
+      Node toRemoveNode = nodeFinder(index);
       Node nodeAfter = nodeFinder(index+1);
       nodeBefore.setNextData(nodeAfter);
       nodeAfter.setPrevData(nodeBefore);
+      toRemoveNode.setNextData(null);
+      toRemoveNode.setPrevData(null);
     }
     size--;
     return removedString;
